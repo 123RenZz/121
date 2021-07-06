@@ -6,7 +6,7 @@ Vue.use(VueRouter)
 
 //路由配置表
 const routes = [
-  <h1>王宇恩 快回来！</h1>
+ 
 ]
 
 const router = new VueRouter({
