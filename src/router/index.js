@@ -5,9 +5,11 @@ import VueRouter from 'vue-router'
 //好处：它不受当前文件路径影响
 import Login from '@/views/login/login.vue'
 //引入登录后主界面
-import Main from '@/views/main/'
+import Main from '@/views/main/main.vue'
 //引入主界面的home内容
-import Home from '@/views/home/'
+import Home from '@/views/home/index.vue'
+import Layout from '@/views/layout/index.vue'
+import AppAside from '@/views/layout/components/aside.vue'
 
 Vue.use(VueRouter)
 
@@ -23,10 +25,23 @@ const routes = [
     component:Main
   },
   {
-    path:'/home',
-    name:'home',
-    component:Home
+    path:'/',
+    //name:'layout',
+    component:Layout,
+    children:[
+      {
+        path:'',   //默认path为空 会作为默认的子路由
+        name:'home',
+        component:Home
+      }
+    ]
+  },
+  {
+    path:'/appAside',
+    name:'appAside',
+    component:AppAside
   }
+  
 
 ]
 

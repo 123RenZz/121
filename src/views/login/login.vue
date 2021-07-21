@@ -41,7 +41,6 @@
 
 
 <script>
-
 import { login } from "@/api/user";
 
 export default {
@@ -126,6 +125,11 @@ export default {
           console.log("登录失败", err);
           this.$message.error("登录失败，手机号或验证码错误！！！");
           this.loginLoading = false; //关闭loading
+
+          //登录失败后跳转到首页
+          this.$router.push({
+            name: "home",
+          });
         });
     },
   },
