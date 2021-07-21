@@ -41,7 +41,8 @@
 
 
 <script>
-import request from "@/utils/request";
+
+import { login } from "@/api/user";
 
 export default {
   name: "LoginIndex",
@@ -108,12 +109,8 @@ export default {
     },
     login() {
       //验证通过
-      this.loginLoading = true; //开启登录中loading
-      request({
-        methods: "POST",
-        url: "/mp/v1_0/authorizations",
-        data: this.user, //data 用来设置post 请求体
-      })
+
+      login(this.user)
         .then((res) => {
           //登录成功
           console.log(res);
