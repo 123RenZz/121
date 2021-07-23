@@ -11,6 +11,14 @@ import Home from '@/views/home/index.vue'
 import Layout from '@/views/layout/index.vue'
 import AppAside from '@/views/layout/components/aside.vue'
 
+//引入文章列表页面
+import Article from '@/views/article/index.vue'
+import Publish from '@/views/publish/index.vue'
+//设置页面
+import Settings from '@/views/settings/index.vue'
+import Fans from '@/views/fans/index.vue'
+import Image from '@/views/image/index.vue'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -20,28 +28,58 @@ const routes = [
     component: Login
   },
   {
-    path:'/main',
-    name:'main',
-    component:Main
+    path: '/main',
+    name: 'main',
+    component: Main
   },
   {
-    path:'/',
+    path: '/',
     //name:'layout',
-    component:Layout,
-    children:[
+    component: Layout,
+    children: [
       {
-        path:'',   //默认path为空 会作为默认的子路由
-        name:'home',
-        component:Home
+        path: '',   //默认path为空 会作为默认的子路由
+        name: 'home',
+        component: Home
       }
     ]
   },
   {
-    path:'/appAside',
-    name:'appAside',
-    component:AppAside
+    path: '/appAside',
+    name: 'appAside',
+    component: AppAside
+  },
+  {
+    path: '/article',
+    name: 'article',
+    component: Article
+  },
+  {
+    path: '/settings',
+    name: 'settings',
+    component: Settings
+  },
+  {
+    path: '/publish',
+    name: 'publish',
+    component: Publish
+  },
+  {
+    path: '/fans',
+    name: 'fans',
+    component: Fans
+  },
+  {
+    path: '/image',
+    name: 'image',
+    component: Image
+  },
+  {
+    path: '/comment',
+    name: 'comment',
+    component: Comment
   }
-  
+
 
 ]
 

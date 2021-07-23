@@ -1,7 +1,7 @@
 <template>
   <el-menu
+    class="nav-menu"
     default-active="/"
-    class="el-menu-vertical-demo"
     @open="handleOpen"
     @close="handleClose"
     background-color="#002033"
@@ -11,32 +11,32 @@
   >
     <el-menu-item index="/">
       <i class="el-icon-platform-eleme"></i>
-      <span slot="title">王小云一</span>
+      <span slot="title">列表一</span>
     </el-menu-item>
 
     <el-menu-item index="/article">
       <i class="el-icon-menu"></i>
-      <span slot="title">王小云二</span>
+      <span slot="title">列表二</span>
     </el-menu-item>
     <el-menu-item index="/image">
       <i class="el-icon-picture-outline-round"></i>
-      <span slot="title">王小云三</span>
+      <span slot="title">列表三</span>
     </el-menu-item>
     <el-menu-item index="/publish">
-      <i class="el-icon-tickets"></i>
-      <span slot="title">王小云四</span>
+      <i class="iconfont icon-publish"></i>
+      <span slot="title" style="padding-left:6px">列表四</span>
     </el-menu-item>
     <el-menu-item index="/comment">
       <i class="el-icon-star-off"></i>
-      <span slot="title">王小云五</span>
+      <span slot="title">列表五</span>
     </el-menu-item>
     <el-menu-item index="/fans">
       <i class="el-icon-s-custom"></i>
-      <span slot="title">王小云六</span>
+      <span slot="title">列表六</span>
     </el-menu-item>
-    <el-menu-item index="/setting">
+    <el-menu-item index="/settings">
       <i class="el-icon-setting"></i>
-      <span slot="title">王小云七</span>
+      <span slot="title">列表七</span>
     </el-menu-item>
   </el-menu>
 </template>
@@ -61,4 +61,12 @@ export default {
 </script>
 
 <style scoped lang="less">
+.nav-menu{
+  .iconfont{
+    margin-left: 0px;
+    padding-left: 5px;
+  }
+
+}
+
 </style>

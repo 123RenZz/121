@@ -1,5 +1,5 @@
 <template>
-  <div>首页王小云</div>
+  <div>首页列表</div>
 </template>
 
 <script>
