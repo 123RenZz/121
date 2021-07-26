@@ -1,11 +1,20 @@
 <template>
   <el-container class="lay-container">
-    <el-aside class="lay-aside">
-      <app-aside class="aside-menu" />
+    <el-aside width="auto" class="lay-aside">
+      <app-aside class="aside-menu" :is-collapse="isCollapse" />
     </el-aside>
     <el-container>
       <el-header class="lay-header">
-        <div><i class="el-icon-s-fold"></i> <span>我的后台管理系统</span></div>
+        <div>
+          <i
+            :class="{
+              'el-icon-s-fold': isCollapse,
+              'el-icon-s-unfold': !isCollapse,
+            }"
+            @click="isCollapse = !isCollapse"
+          ></i>
+          <span>我的后台管理系统</span>
+        </div>
 
         <el-dropdown>
           <div class="user-wiap">
@@ -21,7 +30,7 @@
             <el-dropdown-item>
               <i class="el-icon-setting"></i>个人设置</el-dropdown-item
             >
-            <el-dropdown-item>
+            <el-dropdown-item @click.native="onLogOut">
               <i class="el-icon-s-unfold"></i>
               退出登录</el-dropdown-item
             >
@@ -46,7 +55,8 @@ export default {
   },
   data() {
     return {
-      user:{}
+      user: {},
+      isCollapse: false, //侧边菜单栏的展开状态
     };
   },
   created() {
@@ -55,13 +65,33 @@ export default {
   },
   mounted() {},
   methods: {
-    
-    loadUserProfile(){
-      getUserProfile().then(res =>{
+    loadUserProfile() {
+      getUserProfile().then((res) => {
         this.user = res.data.data;
         //console.log('用户信息方法');
+      });
+    },
+    onLogOut() {
+      console.log("退出登录");
+
+      this.$confirm("您确认退出当前用户登录吗?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning",
       })
-    }
+        .then(() => {
+          //把用户的登录状态清除
+          window.localStorage.removeItem("user"),
+            //跳转到登录页面
+            this.$router.push("/login");
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            message: "取消退出",
+          });
+        });
+    },
   },
 };
 </script>
@@ -76,9 +106,7 @@ export default {
 }
 
 .lay-aside {
-  width: 100px;
-
-  background-color: antiquewhite;
+  //background-color: antiquewhite;
   .aside-menu {
     height: 100%;
   }
@@ -93,7 +121,7 @@ export default {
 }
 
 .lay-main {
-  background-color: burlywood;
+  background-color:#E7EEF2
 }
 
 .user-wiap {

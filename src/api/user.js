@@ -2,7 +2,7 @@
  * 用户相关请求模块
  * 
  */
-import request from "@/utils/request";
+import request from "@/utils/request"
 //用户登录
 export const login = data => {
     return request({
@@ -17,11 +17,8 @@ export const login = data => {
 //获取用户信息
 export const getUserProfile = () => {
     return request({
-        methods:'GET',
-        url: '/mp/v1_0/user/profile',
-        Headers:{
-            Authorization:'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MTg5MDkxMjYsInVzZXJfaWQiOjEsInJlZnJlc2giOmZhbHNlLCJ2ZXJpZmllZCI6dHJ1ZX0.EdKErKDqMc3snkYxqt02jSa8t9G44002yWKY3CMOMJg'
-        }
+        methods: 'GET',
+        url: '/mp/v1_0/user/profile'
 
     })
 

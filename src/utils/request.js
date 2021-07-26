@@ -13,9 +13,33 @@ const request = axios.create({
 
 
 //请求拦截器
+request.interceptors.request.use(
+    //所有的请求都会经过这里
+    function (config) {  //config是当前请求相关的配置信息对象    config是可以修改的
+        const user = JSON.parse(window.localStorage.getItem('user'))
+        console.log(config + '请求成功')
+        //允许请求出去之前，定制统一的业务功能处理
 
+        //如果有登录用户信息  设置统一的token
+        if (user) {
+            config.headers.Authorization = `Bearer ${user.token}`
+        }
+
+        return config; //return之后才可以把请求发送出去
+    },
+    //请求失败，会经过这里
+    function (error) {
+        console.log('失败了')
+        return Promise.reject(error);
+    });
 
 //相应拦截器
+axios.interceptors.response.use(
+    function (response) {
+        return response;
+    }, function (error) {
+        return Promise.reject(error);
+    });
 
 //导出请求方法
 export default request

@@ -41,50 +41,69 @@ const routes = [
         path: '',   //默认path为空 会作为默认的子路由
         name: 'home',
         component: Home
+      },
+      {
+        path: '/article',
+        name: 'article',
+        component: Article
+      },
+      {
+        path: '/settings',
+        name: 'settings',
+        component: Settings
+      },
+      {
+        path: '/publish',
+        name: 'publish',
+        component: Publish
+      },
+      {
+        path: '/fans',
+        name: 'fans',
+        component: Fans
+      },
+      {
+        path: '/image',
+        name: 'image',
+        component: Image
+      },
+      {
+        path: '/comment',
+        name: 'comment',
+        component: Comment
       }
+    
     ]
   },
   {
     path: '/appAside',
     name: 'appAside',
     component: AppAside
-  },
-  {
-    path: '/article',
-    name: 'article',
-    component: Article
-  },
-  {
-    path: '/settings',
-    name: 'settings',
-    component: Settings
-  },
-  {
-    path: '/publish',
-    name: 'publish',
-    component: Publish
-  },
-  {
-    path: '/fans',
-    name: 'fans',
-    component: Fans
-  },
-  {
-    path: '/image',
-    name: 'image',
-    component: Image
-  },
-  {
-    path: '/comment',
-    name: 'comment',
-    component: Comment
   }
-
 
 ]
 
 const router = new VueRouter({
   routes
+})
+
+//路由导航守卫，所有页面导航都会经过这里
+//to 要去的路由页面信息
+//from 来自哪里的路由信息
+//next ：放行方法
+router.beforeEach((to, from, next) => {
+  const user = JSON.parse(window.localStorage.getItem('user'))
+  //校验非登录页面的登录状态
+  if (to.path !== '/login') {
+    if (!user) {
+      next()
+    } else {
+      next('/login')
+    }
+  } else {
+    //登录页面过后正常放行
+    next()
+  }
 })
 
 export default router

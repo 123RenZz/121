@@ -119,6 +119,10 @@ export default {
             type: "success",
           });
           this.loginLoading = false;
+
+          //将接口返回的数据存储到本地，方便应用
+          //本地存储只可以存储字符串，如果要存储 对象或者 数组格式的数据 需要把它转成 json格式的字符串进行存储
+          window.localStorage.setItem('user',JSON.stringify(res.data.data))
         })
         .catch((err) => {
           //登录失败
